@@ -1,4 +1,7 @@
 
+
+USE terminal;
+GO
 -- PAIS ------------------------------------------------------------------------------------------------
 INSERT INTO pais 
 VALUES 
@@ -1078,10 +1081,10 @@ SELECT * FROM tipo_terminal
 GO
 
 -- DESTINO ---------------------------------------------------------------------------------------------
-SELECT * FROM destino;
 INSERT INTO destino
 VALUES
-(1, 7, 415, 'No llega')
+(1, 7, 415, 5000.00, 'No llega')
+SELECT * FROM destino;
 
 
 
@@ -1154,3 +1157,12 @@ INSERT INTO pasaje
 VALUES 
 (1, 1, 1, 1, 330, 40876821, 38747220, GETDATE(), '2022-10-25', 12, 5000.55) 
 SELECT * FROM pasaje;
+
+
+-- numero colectivos 
+INSERT INTO asientos
+VALUES 
+(1, '2022-10-30', 330, 1),
+(1, '2022-10-31', 330, 1),
+(1, '2022-11-01', 5400, 2)
+SELECT * FROM asientos;

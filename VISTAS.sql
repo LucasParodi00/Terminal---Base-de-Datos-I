@@ -2,9 +2,10 @@ USE terminal;
 GO
 
 -- VISTAS -------------------------------------------------------------------------
+
+/*** Esta vista nos permite listar los pasajes ***/
 CREATE VIEW VW_ListaPasajes WITH ENCRYPTION
 AS
-	
 	SELECT 
 		cod_pasaje'Nº',
 		terminal.nombre'TERMINAL',
@@ -17,8 +18,7 @@ AS
 		(empleado.nombre + ' ' + empleado.apellido)'VENDEDOR',
 		fecha_emicion'FECHA COMPRA',
 		fecha_salida'SALIDA',
-		destino.precio'PRECIO'
-		
+		destino.precio'PRECIO'	
 	FROM pasaje
 JOIN terminal ON terminal.cod_terminal = pasaje.cod_terminal
 JOIN opciones_pago ON opciones_pago.cod_pago = pasaje.cod_pago
@@ -30,7 +30,6 @@ JOIN destino ON destino.cod_destino = pasaje.cod_destino
 JOIN localidad ON localidad.cod_localidad = destino.cod_localidad AND localidad.cod_provincia = destino.cod_provincia AND localidad.cod_pais = destino.cod_pais
 JOIN provincia ON provincia.cod_provincia = destino.cod_provincia AND provincia.cod_pais = destino.cod_pais
 JOIN pais ON pais.cod_pais = destino.cod_pais
-
 GO 
 
 ---------------------------------------------------------------

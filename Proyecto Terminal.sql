@@ -188,7 +188,7 @@ ALTER TABLE pasaje ADD CONSTRAINT FK_pasaje_destino FOREIGN KEY (cod_destino) RE
 ALTER TABLE pasaje ADD CONSTRAINT FK_pasaje_empresa FOREIGN KEY (cod_empresa, numero_colectivo) REFERENCES colectivo (cod_empresa, numero_colectivo);
 ALTER TABLE pasaje ADD CONSTRAINT FK_pasaje_cliente FOREIGN KEY (dni_cliente) REFERENCES cliente (dni);
 ALTER TABLE pasaje ADD CONSTRAINT FK_pasaje_empleado FOREIGN KEY (dni_vendedor) REFERENCES empleado (dni);
-
+ALTER TABLE pasaje ADD CONSTRAINT CK_Fecha_Salida CHECK (fecha_salida >= GETDATE());
 GO
 
 CREATE TABLE asientos (

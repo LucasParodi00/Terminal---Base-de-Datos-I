@@ -374,6 +374,7 @@ AS
 	 INSERT INTO asientos (cod_destino, fecha_salida, num_colectivo, empresa, num_asientos)
 	 VALUES (@cod_destino, @fecha_salida, @num_colectivo, @empresa, @asientos)
 
+GO
 
 -- TRANSACCIONES----------------------------------------------------------------------
 -- No genera el pasaje si no hay asientos disponibles.
@@ -385,28 +386,28 @@ CREATE PROC comprarPasaje (
 	@numero_colectivo INT,
 	@dni_cliente INT,
 	@dni_vendedor INT,
-
 	@fecha_salida DATE
 	)
 AS
 	BEGIN
 		BEGIN TRY
 			BEGIN TRANSACTION 
-			
+			declare @error date
 			DECLARE @fecha_emicion DATETIME
 			SELECT @fecha_emicion = GETDATE()
-
-			INSERT INTO pasaje (cod_terminal, cod_pago, cod_destino, cod_empresa, numero_colectivo, dni_cliente, dni_vendedor, fecha_emicion, fecha_salida)
-			VALUES (@cod_terminal, @cod_pago, @cod_destino, @cod_empresa, @numero_colectivo, @dni_cliente, @dni_vendedor, @fecha_emicion, @fecha_salida)
+			INSERT INTO pasaje (cod_terminal, cod_pago, cod_destino, cod_empresa, numero_colectivo, dni_cliente, dni_vendedor, fecha_emicion, fecha_salida) 
+			VALUES (@cod_terminal, @cod_pago, @cod_destino, @cod_empresa, @numero_colectivo, @dni_cliente, @dni_vendedor, @fecha_emicion, @error)
 			
-			UPDATE asientos SET num_asientos = num_asientos - 1 WHERE @cod_empresa = empresa AND @numero_colectivo = num_colectivo AND @fecha_salida = fecha_salida 
-			
+			IF  @fecha_salida in (select fecha_salida from asientos)
+				BEGIN 
+				UPDATE asientos SET num_asientos = num_asientos - 1 WHERE @cod_empresa = empresa AND @numero_colectivo = num_colectivo AND @error = fecha_salida 
+				END
 			COMMIT TRANSACTION
 		END TRY
 		BEGIN CATCH
 			ROLLBACK TRANSACTION
-			PRINT 'No se pudo generar el pasaje';
+			PRINT 'No hay asientos disponibles para esa fecha';
 			THROW;
 		END CATCH
 	END
-
+GO

@@ -1015,8 +1015,7 @@ VALUES
 (1, 24, 'Trancas'),
 (1, 24, 'Yerba Buena')
 
-select * from localidad
-
+SELECT * FROM localidad
 GO
 
 -- TIPO EMPLEADOS ---------------------------------------------------------------------------------------
@@ -1026,8 +1025,8 @@ VALUES
 	('Limipieza'),
 	('Seguridad'),
 	('Guia');
-
 GO
+
 -- EMPLEADOS --------------------------------------------------------------------------------------------
 INSERT INTO empleado
 VALUES 
@@ -1041,7 +1040,6 @@ VALUES
 (49541777, 'Monica Beatris', 'Salinas', '3794-889544', 'beatrisSalinas@outlook.com', '2000-12-19', 1, 'Av. Raul Alfoncin'),
 (29655487, 'Jorge Alejandro', 'Moreyra', '3794-411211', 'JorgeAle@outlook.com', '1978-01-27', 1, 'Rioja 521')
 SELECT * FROM empleado;
-
 GO
 
 -- FORMAS DE PAGO ---------------------------------------------------------------------------------------
@@ -1052,30 +1050,28 @@ VALUES
 	   ('Tarjeta Credito'),
 	   ('Transferencia')
 SELECT * FROM opciones_pago
-
+GO  
 
 -- CLIENTES --------------------------------------------------------------------------------------------
-INSERT INTO cliente 
-VALUES 
-(40876821, 'Lucas Ivan', 'Parodi', '3794-409720', 'lucasparodi09@outlook.com', '1998-01-04'),
-(45121154, 'Sebastian Alejandro', 'Mansuti', '3794-224878', 'alejandromansuti@gmail.com', '1999-09-30'),
-(27215547, 'Laura Sofia', 'Gonzales', '3795-298874', 'lauragonzales@gmail.com', '2000-06-15'),
-(31455789, 'Miguel Juan', 'Martinez', '3624-542116', 'miguelJMartinez@outlook.com', '1978-03-03'),
-(39455146, 'Soraya Elina', 'Facian', '3794-551235', 'SoryFac@gmail.com', '2002-10-31'),
-(42048987, 'Matias Mauricio', 'Castillo', '5984-515865', 'tbeck@optonline.net', '1999-06-12'),
-(42217764, 'Natali Solange', 'Acuña', '3777-438767', 'natysolang543@gmail.com', '1999-10-19'),
-(39073054, 'Sergio Edgardo', 'Altamirano', '3795-125433', 'sergioEdgA@hotmail.com', '1993-11-07'),
-(25794136, 'Marisa Roxana', 'Carrizo', '3794-430089', 'Mroxanacarrizo@outlook.com', '1977-01-13'),
-(42385463, 'Nahuel Agustin', 'Fuentes', '3794-000122', 'Nahu232423@outlook.com', '2000-02-16'),
-(32926356, 'Valeria Agostina', 'Diaz', '3624-343443', 'valen2022@gmail.com', '1987-04-25'),
-(40750779, 'Cristian David', 'Gomez', '3382-456656', 'cristiandavidG@hotmail.com', '1997-11-10'),
-(52146487, 'Silvina Maria', 'Rojas', '3794-187745', 'silviMRojas@hotmail.com', '2005-11-30'),
-(45111345, 'Macarena Nadia', 'Casafus', '3794-844122', 'nadiaMac@hotmail.com', '1991-03-19'),
-(55121441, 'Juan Alberto', 'Rivero', '3795-454111', 'riveroJuan@hotmail.com', '2000-05-29'),
-(14884211, 'Bernardo Matias', 'Sanchez', '3777-111745', 'bernardoMart@hotmail.com', '1969-11-30')
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (40876821, 'Lucas Ivan', 'Parodi', '3794-409720', 'lucasparodi09@outlook.com', '1998-01-04');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (45121154, 'Sebastian Alejandro', 'Mansuti', '3794-224878', 'alejandromansuti@gmail.com', '1999-09-30');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (27215547, 'Laura Sofia', 'Gonzales', '3795-298874', 'lauragonzales@gmail.com', '2000-06-15');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (31455789, 'Miguel Juan', 'Martinez', '3624-542116', 'miguelJMartinez@outlook.com', '1978-03-03');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (39455146, 'Soraya Elina', 'Facian', '3794-551235', 'SoryFac@gmail.com', '2002-10-31');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (42048987, 'Matias Mauricio', 'Castillo', '5984-515865', 'tbeck@optonline.net', '1999-06-12');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (42217764, 'Natali Solange', 'Acuña', '3777-438767', 'natysolang543@gmail.com', '1999-10-19');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (39073054, 'Sergio Edgardo', 'Altamirano', '3795-125433', 'sergioEdgA@hotmail.com', '1993-11-07');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (25794136, 'Marisa Roxana', 'Carrizo', '3794-430089', 'Mroxanacarrizo@outlook.com', '1977-01-13');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (42385463, 'Nahuel Agustin', 'Fuentes', '3794-000122', 'Nahu232423@outlook.com', '2000-02-16');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (32926356, 'Valeria Agostina', 'Diaz', '3624-343443', 'valen2022@gmail.com', '1987-04-25');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (40750779, 'Cristian David', 'Gomez', '3382-456656', 'cristiandavidG@hotmail.com', '1997-11-10');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (52146487, 'Silvina Maria', 'Rojas', '3794-187745', 'silviMRojas@hotmail.com', '2005-11-30');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (45111345, 'Macarena Nadia', 'Casafus', '3794-844122', 'nadiaMac@hotmail.com', '1991-03-19');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (55121441, 'Juan Alberto', 'Rivero', '3795-454111', 'riveroJuan@hotmail.com', '2000-05-29');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (14884211, 'Bernardo Matias', 'Sanchez', '3777-111745', 'bernardoMart@hotmail.com', '1969-11-30');
+INSERT INTO cliente (dni, nombre, apellido, celular, correo, fechaNacimiento) VALUES (15221445, 'Antonio Mariano', 'Escobar', '3794-335422', 'AntonioMaEscobar@hotmail.com', '1965-06-30');
 
 SELECT * FROM cliente;
-
 GO
 
 -- TIPO TERMINAL ---------------------------------------------------------------------------------------
@@ -1086,7 +1082,6 @@ VALUES
 ('Nacional'),
 ('Provincial')
 SELECT * FROM tipo_terminal
-
 GO
 
 -- DESTINO ---------------------------------------------------------------------------------------------
@@ -1103,12 +1098,7 @@ VALUES
 (1, 4, 172, 1400.00, NULL),
 (1, 4, 219, 1700.00, NULL)
 
-
 SELECT * FROM destino;
-
-select * from localidad where localidad = 'resistencia'
-select * from localidad where cod_provincia = 4
-
 GO
 
 -- EMPRESA -----------------------------------------------------------------------------------------------
@@ -1118,7 +1108,6 @@ VALUES
 ('Santa Rosada', 'santaRosadaBus@hotmail.com', '778EX124', '3795-293342', 'Ruta 12 Km 1521'),
 ('Transportes Martinez', 'transMartines@gmail.com', '421XE511', '3624-454445','Ruta Provincial Nº27 Km 48')
 SELECT * FROM empresa;
-
 GO
 
 -- TERMINAL --------------------------------------------------------------------------------------------
@@ -1127,7 +1116,6 @@ VALUES
 (2,'Terminal de Ombibus Corrientes', 17, '3749-554211', 'terminalCorrientes@gmail.com', 'Av. Maipu 5200'),
 (3,'Terminal de Ombibus Bella Vista - Corrientes', 7, '3777-422154', 'terminalBellaVista@gmail.com', 'Ruta Provincial Nº 27 Km 47')
 SELECT * FROM terminal;
-
 GO
 
 -- CHOFER ------------------------------------------------------------------------------------------------
@@ -1141,7 +1129,6 @@ VALUES
 (40662412, 2, 'Ivan Javier', 'Acevedo', '3794-884133', 'ivanJAcevedo@gmail.com', '1998-03-10', 'D-2.2', 'San Juan 1646'),
 (20554123, 3, 'Valentin Denis', 'Zambrana', '3777-445551', 'valentinZam@gmail.com', '1972-05-09', 'G-1.1', 'Av. Kokito 54')
 SELECT * FROM chofer;
-
 GO
 
 -- COLECTIVO -------------------------------------------------------------------------------------------
@@ -1157,17 +1144,38 @@ VALUES
 (3, 140, 'MPD-577', 29, 'SEMI-CAMA'),
 (3, 80, 'NQL-855', 31, 'SEMI-CAMA')
 SELECT * FROM colectivo;
+GO
+
+/* CARGAR DE ASIENTOS */
+exec PA_Fecha_Asientos 2, '2022-11-25', 330, 1 
+exec PA_Fecha_Asientos 2, '2022-11-26', 330, 1 
+exec PA_Fecha_Asientos 2, '2022-11-26', 5400, 2
+exec PA_Fecha_Asientos 3, '2022-11-26', 7100, 2
+exec PA_Fecha_Asientos 4, '2022-11-27', 80, 3
+exec PA_Fecha_Asientos 4, '2022-11-27', 140, 3
+exec PA_Fecha_Asientos 4, '2022-11-30', 7100, 2
+exec PA_Fecha_Asientos 5, '2022-11-30', 140, 3
+exec PA_Fecha_Asientos 9, '2022-11-30', 400, 1
+exec PA_Fecha_Asientos 9, '2022-11-30', 330, 1
+exec PA_Fecha_Asientos 10, '2022-11-28', 80, 3
+exec PA_Fecha_Asientos 10, '2022-11-29', 140, 3
+exec PA_Fecha_Asientos 10, '2022-11-30', 7300, 2
+SELECT * FROM asientos
+GO
 
 -- PASAJE ----------------------------------------------------------------------------------------------
-exec comprarPasaje 1, 1, 1, 1,330, 40876821, 38747220, '2022-10-12'
-select * from VW_ListaPasajes
-SELECT * FROM destino;
-
+exec comprarPasaje 1, 1, 2, 2, 5400, 40876821, 38747220, '2022-11-26';
+exec comprarPasaje 1, 1, 3, 2, 7100, 31455789, 41338816, '2022-11-26';
+exec comprarPasaje 1, 1, 4, 3, 80, 25794136,   41338816, '2022-11-27';
+exec comprarPasaje 1, 2, 4, 3, 140, 27215547,  41338816, '2022-11-27';
+exec comprarPasaje 1, 2, 10, 3, 80, 39455146,  41338816, '2022-11-28';
+exec comprarPasaje 1, 2, 10, 3, 140, 42385463, 41338816, '2022-11-29';
+exec comprarPasaje 1, 3, 5, 3, 140, 45121154,  41338816, '2022-11-30';
+exec comprarPasaje 1, 3, 9, 1, 330, 45111345,  41338816, '2022-11-30';
+exec comprarPasaje 1, 4, 9, 1, 400, 55121441,  41338816, '2022-11-30';
+exec comprarPasaje 1, 4, 4, 2, 7100, 27215547, 41338816, '2022-11-30';
+exec comprarPasaje 1, 4, 10, 2, 7300, 31455789, 41338816, '2022-11-30';
+SELECT * FROM VW_ListaPasajes
 GO
--- numero colectivos 
---delete from pasaje
 
-exec PA_Fecha_Asientos 1, '2022-10-30', 330, 1 
-exec PA_Fecha_Asientos 1, '2022-10-31', 330, 1 
-exec PA_Fecha_Asientos 1, '2022-11-01', 5400, 2
-
+SELECT * FROM VW_DestinoCliente

@@ -24,7 +24,9 @@ CREATE TRIGGER TR_RegistroInsercionUsuario_BI
 VALUES 
 (@dni_cliente, 'SE AGREGO CLIENTE', SYSTEM_USER, GETDATE());
 
+SELECT * FROM registro_cliente
 -- ROLES --------------------------------------------------------------------------------------------------------
+GO
 
 -- INSERTAR - ELIMINAR - ACTUALIZAR
 CREATE LOGIN vendedor WITH PASSWORD = '1234', DEFAULT_DATABASE = terminal

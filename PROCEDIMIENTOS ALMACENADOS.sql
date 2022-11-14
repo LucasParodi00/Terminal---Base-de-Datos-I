@@ -2,40 +2,41 @@
 
 USE terminal;
 GO
--- PROCEDIMIENTOS ALMACENADOS----------------------------------------------------------------------------
---CREATE PROC PA_VerPasaje
---	@cod_pasaje INT
---AS
---	SELECT 
---		cod_pasaje'Nº',
---		terminal.nombre'TERMINAL',
---		opciones_pago.tipo_pago'TIPO DE PAGO',
---		pais.pais 'PAIS',
---		provincia.provincia'PROVINCIA',
---		localidad.localidad'LOCALIDAD',
---		empresa.nombre'EMPRESA',
---		colectivo.numero_colectivo'Nº COLECTIVO',
---		cliente.dni'DNI',
---		cliente.nombre'NOMBRE',
---		cliente.apellido'APELLIDO',
---		empleado.nombre'VENDEDOR',
---		empleado.apellido'VENDEDOR',
---		fecha_emicion'FECHA COMPRA',
---		fecha_salida'SALIDA',
---		num_asiento'Nº ASIENTO',
---		precio'PRECIO'
---	FROM pasaje
---JOIN terminal ON terminal.cod_terminal = pasaje.cod_terminal
---JOIN opciones_pago ON opciones_pago.cod_pago = pasaje.cod_pago
---JOIN empresa ON empresa.cod_empresa = pasaje.cod_empresa
---JOIN colectivo ON colectivo.numero_colectivo = pasaje.numero_colectivo AND colectivo.cod_empresa = pasaje.cod_empresa
---JOIN cliente ON cliente.dni = pasaje.dni_cliente
---JOIN empleado ON empleado.dni = pasaje.dni_vendedor
---JOIN destino ON destino.cod_destino = pasaje.cod_destino 
---JOIN localidad ON localidad.cod_localidad = destino.cod_localidad AND localidad.cod_provincia = destino.cod_provincia AND localidad.cod_pais = destino.cod_pais
---JOIN provincia ON provincia.cod_provincia = destino.cod_provincia AND provincia.cod_pais = destino.cod_pais
---JOIN pais ON pais.cod_pais = destino.cod_pais
---	WHERE @cod_pasaje = cod_pasaje;
+ --PROCEDIMIENTOS ALMACENADOS----------------------------------------------------------------------------
+CREATE PROC PA_VerPasaje
+	@cod_pasaje INT
+AS
+	SELECT 
+		cod_pasaje'Nº',
+		terminal.nombre'TERMINAL',
+		opciones_pago.tipo_pago'TIPO DE PAGO',
+		pais.pais 'PAIS',
+		provincia.provincia'PROVINCIA',
+		localidad.localidad'LOCALIDAD',
+		empresa.nombre'EMPRESA',
+		colectivo.numero_colectivo'Nº COLECTIVO',
+		cliente.dni'DNI',
+		cliente.nombre'NOMBRE',
+		cliente.apellido'APELLIDO',
+		empleado.nombre'VENDEDOR',
+		empleado.apellido'VENDEDOR',
+		fecha_emicion'FECHA COMPRA',
+		pasaje.fecha_salida'SALIDA',
+		asientos.num_asientos'Nº ASIENTO',
+		destino.precio'PRECIO'
+	FROM pasaje
+JOIN terminal ON terminal.cod_terminal = pasaje.cod_terminal
+JOIN opciones_pago ON opciones_pago.cod_pago = pasaje.cod_pago
+JOIN empresa ON empresa.cod_empresa = pasaje.cod_empresa
+JOIN colectivo ON colectivo.numero_colectivo = pasaje.numero_colectivo AND colectivo.cod_empresa = pasaje.cod_empresa
+JOIN cliente ON cliente.dni = pasaje.dni_cliente
+JOIN empleado ON empleado.dni = pasaje.dni_vendedor
+JOIN destino ON destino.cod_destino = pasaje.cod_destino 
+JOIN localidad ON localidad.cod_localidad = destino.cod_localidad AND localidad.cod_provincia = destino.cod_provincia AND localidad.cod_pais = destino.cod_pais
+JOIN provincia ON provincia.cod_provincia = destino.cod_provincia AND provincia.cod_pais = destino.cod_pais
+JOIN pais ON pais.cod_pais = destino.cod_pais
+JOIN asientos ON asientos.fecha_salida = pasaje.fecha_salida AND asientos.num_colectivo = colectivo.numero_colectivo AND asientos.empresa = empresa.cod_empresa
+	WHERE @cod_pasaje = cod_pasaje;
 
 
 --EMPLEADOS
@@ -393,15 +394,19 @@ AS
 		BEGIN TRY
 			BEGIN TRANSACTION 
 			declare @error date
+
 			DECLARE @fecha_emicion DATETIME
 			SELECT @fecha_emicion = GETDATE()
+
+			IF  @fecha_salida in (select fecha_salida from asientos)
+				BEGIN 
+				select @error = @fecha_salida
+				UPDATE asientos SET num_asientos = num_asientos - 1 WHERE @cod_empresa = empresa AND @numero_colectivo = num_colectivo AND @error = fecha_salida;
+				END
+
 			INSERT INTO pasaje (cod_terminal, cod_pago, cod_destino, cod_empresa, numero_colectivo, dni_cliente, dni_vendedor, fecha_emicion, fecha_salida) 
 			VALUES (@cod_terminal, @cod_pago, @cod_destino, @cod_empresa, @numero_colectivo, @dni_cliente, @dni_vendedor, @fecha_emicion, @error)
 			
-			IF  @fecha_salida in (select fecha_salida from asientos)
-				BEGIN 
-				UPDATE asientos SET num_asientos = num_asientos - 1 WHERE @cod_empresa = empresa AND @numero_colectivo = num_colectivo AND @error = fecha_salida 
-				END
 			COMMIT TRANSACTION
 		END TRY
 		BEGIN CATCH
